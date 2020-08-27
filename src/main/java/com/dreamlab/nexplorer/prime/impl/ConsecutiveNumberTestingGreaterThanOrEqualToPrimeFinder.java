@@ -3,6 +3,7 @@ package com.dreamlab.nexplorer.prime.impl;
 import com.dreamlab.nexplorer.prime.GreaterThanOrEqualToPrimeFinder;
 import com.dreamlab.nexplorer.prime.PrimalityTest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.math.BigInteger;
@@ -26,7 +27,7 @@ public class ConsecutiveNumberTestingGreaterThanOrEqualToPrimeFinder
     }
 
     @Override
-    public long find(BigInteger n) {
+    public BigInteger find(BigInteger n) {
         if (n.bitLength() > 63) {
             throw new IllegalArgumentException("Integer too large for implementation");
         }
@@ -41,7 +42,7 @@ public class ConsecutiveNumberTestingGreaterThanOrEqualToPrimeFinder
                     i % 31 != 0 && i % 37 != 0 && i % 41 != 0 &&
                     i % 43 != 0 && i % 47 != 0 && i % 53 != 0 &&
                     primalityTest.test(BigInteger.valueOf(i))) {
-                return i;
+                return BigInteger.valueOf(i);
             }
         }
         throw new IllegalArgumentException(String.format("Maximum search limit of %d reached", Long.MAX_VALUE));

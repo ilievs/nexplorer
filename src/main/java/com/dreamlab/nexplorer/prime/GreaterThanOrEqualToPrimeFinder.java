@@ -4,5 +4,5 @@ import java.math.BigInteger;
 
 public interface GreaterThanOrEqualToPrimeFinder {
 
-    long find(BigInteger n);
+    BigInteger find(BigInteger n);
 }

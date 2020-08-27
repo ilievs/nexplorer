@@ -16,26 +16,26 @@ class ConsecutiveNumberTestingGreaterThanOrEqualToPrimeFinderTest {
 
     @Test
     public void testSmallNumbers() {
-        assertEquals(2129, greaterThanNPrimeFinder.find(BigInteger.valueOf(2128)));
-        assertEquals(2131, greaterThanNPrimeFinder.find(BigInteger.valueOf(2130)));
+        assertEquals(BigInteger.valueOf(2129), greaterThanNPrimeFinder.find(BigInteger.valueOf(2128)));
+        assertEquals(BigInteger.valueOf(2131), greaterThanNPrimeFinder.find(BigInteger.valueOf(2130)));
     }
 
     @Test
     public void testLargeNumber() {
-        assertEquals(70368760954879L, greaterThanNPrimeFinder.find(BigInteger.valueOf(70368760954878L)));
+        assertEquals(BigInteger.valueOf(70368760954879L), greaterThanNPrimeFinder.find(BigInteger.valueOf(70368760954878L)));
     }
 
     @Test
     public void testVeryLargeNumber() {
-        long n = 7036876095487800000L;
-        long next = greaterThanNPrimeFinder.find(BigInteger.valueOf(n));
-        assertTrue(primalityTest.test(BigInteger.valueOf(next)));
+        BigInteger n = BigInteger.valueOf(7036876095487800000L);
+        BigInteger next = greaterThanNPrimeFinder.find(n);
+        assertTrue(primalityTest.test(next));
     }
 
     @Test
     public void testLargePrimeRightAfterGivenN() {
-        long largePrime = 3318308475676071413L;
-        long next = greaterThanNPrimeFinder.find(BigInteger.valueOf(largePrime-1));
+        BigInteger largePrime = BigInteger.valueOf(3318308475676071413L);
+        BigInteger next = greaterThanNPrimeFinder.find(largePrime.subtract(BigInteger.ONE));
         assertEquals(largePrime, next);
     }
 }

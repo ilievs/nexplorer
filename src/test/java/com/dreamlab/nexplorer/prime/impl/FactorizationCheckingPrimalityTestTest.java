@@ -66,7 +66,7 @@ class FactorizationCheckingPrimalityTestTest {
     }
 
     @Test
-    public void testVeryLargePrimes() {
+    public void testVeryLargePrime() {
         assertTrue(primalityTest.test(BigInteger.valueOf(18_014_398_241_046_527L)));
     }
 
