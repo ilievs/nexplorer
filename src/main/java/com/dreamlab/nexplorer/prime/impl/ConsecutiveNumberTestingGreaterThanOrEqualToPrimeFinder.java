@@ -22,7 +22,8 @@ public class ConsecutiveNumberTestingGreaterThanOrEqualToPrimeFinder
     private final PrimalityTest primalityTest;
 
     @Autowired
-    public ConsecutiveNumberTestingGreaterThanOrEqualToPrimeFinder(PrimalityTest primalityTest) {
+    public ConsecutiveNumberTestingGreaterThanOrEqualToPrimeFinder(
+            @Qualifier("optimalSelectivePrimalityTest") PrimalityTest primalityTest) {
         this.primalityTest = primalityTest;
     }
 

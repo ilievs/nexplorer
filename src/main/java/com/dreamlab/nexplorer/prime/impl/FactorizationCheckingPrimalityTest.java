@@ -27,7 +27,7 @@ import java.math.BigInteger;
  * 30k + i and 30(k+1) + i there are 8 that have to be checked. This can be optimized
  * further with more primes.
  */
-@Component
+@Component("factorizationCheckingPrimalityTest")
 public class FactorizationCheckingPrimalityTest implements PrimalityTest {
 
 

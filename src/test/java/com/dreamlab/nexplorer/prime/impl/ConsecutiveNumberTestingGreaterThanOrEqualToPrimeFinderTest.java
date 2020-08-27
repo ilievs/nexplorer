@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ConsecutiveNumberTestingGreaterThanOrEqualToPrimeFinderTest {
 
-    PrimalityTest primalityTest = new FactorizationCheckingPrimalityTest();
+    PrimalityTest primalityTest = new MillerRabinPrimalityTest();
     GreaterThanOrEqualToPrimeFinder greaterThanNPrimeFinder =
             new ConsecutiveNumberTestingGreaterThanOrEqualToPrimeFinder(primalityTest);
 
