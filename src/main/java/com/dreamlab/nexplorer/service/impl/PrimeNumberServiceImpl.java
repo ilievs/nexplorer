@@ -1,7 +1,8 @@
-package com.dreamlab.nexplorer.service;
+package com.dreamlab.nexplorer.service.impl;
 
 import com.dreamlab.nexplorer.prime.GreaterThanOrEqualToPrimeFinder;
 import com.dreamlab.nexplorer.prime.PrimalityTest;
+import com.dreamlab.nexplorer.service.PrimeNumberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
