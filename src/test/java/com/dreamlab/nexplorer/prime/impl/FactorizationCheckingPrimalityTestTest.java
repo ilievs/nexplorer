@@ -5,12 +5,35 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class FactorizationCheckingPrimalityTestTest {
 
+    public static final BigInteger LONG_MAX_VALUE = BigInteger.valueOf(Long.MAX_VALUE);
+    public static final BigInteger LARGEST_PRIME_SMALLER_THAN_LONG_MAX_VALUE =
+            BigInteger.valueOf(9223372036854775783L);
+
     private final PrimalityTest primalityTest = new FactorizationCheckingPrimalityTest();
+
+    @Test
+    public void testLongMaxValue() {
+        assertFalse(primalityTest.test(LONG_MAX_VALUE));
+    }
+
+    @Test
+    public void testLimitReachedWithNumberGreaterThanLongMaxValue() {
+        assertThrows(IllegalArgumentException.class,
+                () -> assertFalse(primalityTest.test(LONG_MAX_VALUE.add(BigInteger.ONE))));
+
+        assertThrows(IllegalArgumentException.class,
+                () -> assertFalse(primalityTest.test(LONG_MAX_VALUE.add(BigInteger.valueOf(123)))));
+    }
+
+    @Test
+    public void testLimitReachedWithNumberGreaterThanLargestPrimeSmallerThanLongMaxValue() {
+        assertThrows(IllegalArgumentException.class,
+                () -> primalityTest.test(LARGEST_PRIME_SMALLER_THAN_LONG_MAX_VALUE));
+    }
 
     @Test
     public void testSmallPrimes() {

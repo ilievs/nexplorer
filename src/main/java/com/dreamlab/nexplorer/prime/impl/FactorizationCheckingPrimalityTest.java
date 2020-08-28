@@ -30,6 +30,7 @@ import java.math.BigInteger;
 @Component("factorizationCheckingPrimalityTest")
 public class FactorizationCheckingPrimalityTest implements PrimalityTest {
 
+    static final long SQUARE_LONG_OVERFLOW_THRESHOLD = (long) Math.floor(Math.sqrt(Long.MAX_VALUE)) + 1;
 
     @Override
     public boolean test(BigInteger n) {
@@ -52,6 +53,9 @@ public class FactorizationCheckingPrimalityTest implements PrimalityTest {
         }
 
         for (long i = 30; i * i <= limitedN; i += 30) {
+            if (i > SQUARE_LONG_OVERFLOW_THRESHOLD) {
+                throw new IllegalArgumentException("Integer too large for implementation");
+            }
             if (limitedN % (i + 1) == 0 || limitedN % (i + 7) == 0 ||
                     limitedN % (i + 11) == 0 || limitedN % (i + 13) == 0 ||
                     limitedN % (i + 17) == 0 || limitedN % (i + 19) == 0 ||
