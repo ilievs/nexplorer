@@ -44,7 +44,7 @@ public class MillerRabinPrimalityTest implements PrimalityTest {
     public boolean test(BigInteger n) {
 
         // check if it's even
-        if (n.mod(BigInteger.TWO).compareTo(BigInteger.ZERO) == 0) {
+        if (n.getLowestSetBit() == 1) {
             return false;
         }
 
