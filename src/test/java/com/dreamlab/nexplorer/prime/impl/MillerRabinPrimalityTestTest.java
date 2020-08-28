@@ -87,6 +87,13 @@ class MillerRabinPrimalityTestTest {
     }
 
     @Test
+    public void testNonPositiveNumber() {
+        assertFalse(primalityTest.test(BigInteger.valueOf(-1283782)));
+        assertFalse(primalityTest.test(BigInteger.valueOf(-12837822534545L)));
+        assertFalse(primalityTest.test(new BigInteger("-7824678236478236487236478236478236478236784623784623787823")));
+    }
+
+    @Test
     public void testSmallPrimes() {
         assertTrue(primalityTest.test(BigInteger.valueOf(17)));
         assertTrue(primalityTest.test(BigInteger.valueOf(23)));

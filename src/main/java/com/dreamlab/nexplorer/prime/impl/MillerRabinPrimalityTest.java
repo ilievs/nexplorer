@@ -43,6 +43,11 @@ public class MillerRabinPrimalityTest implements PrimalityTest {
     @Override
     public boolean test(BigInteger n) {
 
+        // if the number is non positive, it's not prime
+        if (n.compareTo(BigInteger.ONE) < 0) {
+            return false;
+        }
+
         // check if it's even
         if (n.getLowestSetBit() == 1) {
             return false;
