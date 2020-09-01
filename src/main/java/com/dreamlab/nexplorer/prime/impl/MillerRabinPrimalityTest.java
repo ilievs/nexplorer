@@ -44,8 +44,14 @@ public class MillerRabinPrimalityTest implements PrimalityTest {
     public boolean test(BigInteger n) {
 
         // if the number is non positive, it's not prime
-        if (n.compareTo(BigInteger.ONE) < 0) {
+        if (n.compareTo(BigInteger.TWO) < 0) {
             return false;
+        }
+
+        // the Miller Rabin test is only valid for n > 2, so we have to check for
+        // 2 separately
+        if (n.compareTo(BigInteger.TWO) == 0) {
+            return true;
         }
 
         // check if it's even

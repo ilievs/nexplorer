@@ -34,6 +34,12 @@ public class FactorizationCheckingPrimalityTest implements PrimalityTest {
 
     @Override
     public boolean test(BigInteger n) {
+
+        // if the number is non positive, it's not prime
+        if (n.compareTo(BigInteger.TWO) < 0) {
+            return false;
+        }
+
         if (n.bitLength() > 63) {
             throw new IllegalArgumentException("Integer too large for implementation");
         }
