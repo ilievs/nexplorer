@@ -6,8 +6,11 @@ import com.dreamlab.nexplorer.exception.UnknownFunctionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Component
 public class SimpleFunctionCallFactory implements FunctionCallFactory {
@@ -15,10 +18,9 @@ public class SimpleFunctionCallFactory implements FunctionCallFactory {
     private final Map<String, FunctionCall> functionMapping;
 
     @Autowired
-    public SimpleFunctionCallFactory(IsPrimeFunctionCall isPrime, NextPrimeFunctionCall nextPrime) {
-        functionMapping = Map.of(
-                IsPrimeFunctionCall.FUNCTION_CALL, isPrime,
-                NextPrimeFunctionCall.FUNCTION_CALL, nextPrime);
+    public SimpleFunctionCallFactory(List<FunctionCall> functionCalls) {
+        functionMapping = functionCalls.stream()
+                .collect(Collectors.toMap(FunctionCall::getFunctionName, Function.identity()));
     }
 
     @Override

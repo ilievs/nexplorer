@@ -14,7 +14,7 @@ import java.util.Objects;
 @Component
 public class IsPrimeFunctionCall implements FunctionCall {
 
-    public static final String FUNCTION_CALL = "isPrime";
+    public static final String FUNCTION_NAME = "isPrime";
 
     private final PrimeNumberService primeNumberService;
 
@@ -26,14 +26,19 @@ public class IsPrimeFunctionCall implements FunctionCall {
 
     private BigInteger validate(List<String> args) {
         if (args.size() != 1) {
-            throw new WrongNumberOfArgumentsException(FUNCTION_CALL, 1, args);
+            throw new WrongNumberOfArgumentsException(FUNCTION_NAME, 1, args);
         }
         String argument1 = args.get(0);
         try {
             return new BigInteger(argument1);
         } catch (NumberFormatException e) {
-            throw new IncorrectArgumentFormatException(FUNCTION_CALL, 1, argument1);
+            throw new IncorrectArgumentFormatException(FUNCTION_NAME, 1, argument1);
         }
+    }
+
+    @Override
+    public String getFunctionName() {
+        return FUNCTION_NAME;
     }
 
     @Override
