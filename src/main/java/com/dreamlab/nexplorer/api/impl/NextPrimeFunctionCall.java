@@ -12,14 +12,14 @@ import java.util.List;
 import java.util.Objects;
 
 @Component
-public class IsPrimeFunctionCall implements FunctionCall {
+public class NextPrimeFunctionCall implements FunctionCall {
 
-    public static final String FUNCTION_CALL = "isPrime";
+    public static final String FUNCTION_CALL = "nextPrime";
 
     private final PrimeNumberService primeNumberService;
 
     @Autowired
-    public IsPrimeFunctionCall(PrimeNumberService primeNumberService) {
+    public NextPrimeFunctionCall(PrimeNumberService primeNumberService) {
         Objects.requireNonNull(primeNumberService);
         this.primeNumberService = primeNumberService;
     }
@@ -39,6 +39,6 @@ public class IsPrimeFunctionCall implements FunctionCall {
     @Override
     public String execute(List<String> args) {
         BigInteger arg = validate(args);
-        return String.valueOf(primeNumberService.isPrime(arg));
+        return primeNumberService.nextPrime(arg).toString();
     }
 }

@@ -16,7 +16,8 @@ import static org.mockito.Mockito.*;
 class SimpleFunctionCallExecutorTest {
 
     IsPrimeFunctionCall isPrimeCall = mock(IsPrimeFunctionCall.class);
-    FunctionCallFactory factory = new SimpleFunctionCallFactory(isPrimeCall);
+    NextPrimeFunctionCall nextPrime = mock(NextPrimeFunctionCall.class);
+    FunctionCallFactory factory = new SimpleFunctionCallFactory(isPrimeCall, nextPrime);
     FunctionCallExecutor functionCallExecutor = new SimpleFunctionCallExecutor(factory);
 
     @Test

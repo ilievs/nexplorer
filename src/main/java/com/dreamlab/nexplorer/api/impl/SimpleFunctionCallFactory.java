@@ -15,8 +15,10 @@ public class SimpleFunctionCallFactory implements FunctionCallFactory {
     private final Map<String, FunctionCall> functionMapping;
 
     @Autowired
-    public SimpleFunctionCallFactory(IsPrimeFunctionCall isPrime) {
-        functionMapping = Map.of(IsPrimeFunctionCall.FUNCTION_CALL, isPrime);
+    public SimpleFunctionCallFactory(IsPrimeFunctionCall isPrime, NextPrimeFunctionCall nextPrime) {
+        functionMapping = Map.of(
+                IsPrimeFunctionCall.FUNCTION_CALL, isPrime,
+                NextPrimeFunctionCall.FUNCTION_CALL, nextPrime);
     }
 
     @Override
