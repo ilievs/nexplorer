@@ -15,6 +15,14 @@ class ConsecutiveNumberTestingGreaterThanOrEqualToPrimeFinderTest {
             new ConsecutiveNumberTestingGreaterThanOrEqualToPrimeFinder(primalityTest);
 
     @Test
+    public void testNegativeValues() {
+        assertFalse(primalityTest.test(BigInteger.valueOf(-436356)));
+        assertFalse(primalityTest.test(BigInteger.valueOf(-9823498234343L)));
+        assertFalse(primalityTest.test(new BigInteger("-83748971897238342342342342342347892374892374892374897")));
+        assertFalse(primalityTest.test(new BigInteger("-91349823894238478923748923742354235489723423423234436712")));
+    }
+
+    @Test
     public void testSmallNumbers() {
         assertEquals(BigInteger.valueOf(2129), greaterThanNPrimeFinder.find(BigInteger.valueOf(2128)));
         assertEquals(BigInteger.valueOf(2131), greaterThanNPrimeFinder.find(BigInteger.valueOf(2130)));

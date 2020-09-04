@@ -16,6 +16,14 @@ class FactorizationCheckingPrimalityTestTest {
     private final PrimalityTest primalityTest = new FactorizationCheckingPrimalityTest();
 
     @Test
+    public void testNegativeValues() {
+        assertFalse(primalityTest.test(BigInteger.valueOf(-1273)));
+        assertFalse(primalityTest.test(BigInteger.valueOf(-6747328971283L)));
+        assertFalse(primalityTest.test(new BigInteger("-65635463463746183748374871384713847843874897")));
+        assertFalse(primalityTest.test(new BigInteger("-84713894789234734792379791239891238912389128493578475")));
+    }
+
+    @Test
     public void testZero() {
         assertFalse(primalityTest.test(BigInteger.ZERO));
     }
