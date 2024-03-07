@@ -1,17 +1,17 @@
 package com.dreamlab.nexplorer.prime.impl;
 
+import java.math.BigInteger;
+
 import com.dreamlab.nexplorer.prime.GreaterThanOrEqualToPrimeFinder;
 import com.dreamlab.nexplorer.prime.PrimalityTest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import java.math.BigInteger;
-
 /**
  * Tests each consecutive uneven number greater than N with the PrimalityTest
  * provided.
- *
  * The complexity is O( n/ln(n) * PrimalityTest ). In the case of a factorization
  * primality test the complexity will be O( 4/15 * n^2 / ln(n) ).
  */

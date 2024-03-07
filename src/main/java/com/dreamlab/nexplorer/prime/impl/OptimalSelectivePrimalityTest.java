@@ -1,27 +1,30 @@
 package com.dreamlab.nexplorer.prime.impl;
 
+import java.math.BigInteger;
+
 import com.dreamlab.nexplorer.prime.PrimalityTest;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-
-import java.math.BigInteger;
 
 @Component("optimalSelectivePrimalityTest")
 public class OptimalSelectivePrimalityTest implements PrimalityTest {
 
-    @Autowired
-    @Qualifier("millerRubinPrimalityTest")
-    private PrimalityTest millerRubin;
+    private final PrimalityTest millerRubin;
+    private final PrimalityTest factorizationPrimalityTest;
 
-    @Autowired
-    @Qualifier("factorizationCheckingPrimalityTest")
-    private PrimalityTest factorizationCheckingPrimalityTest;
+    public OptimalSelectivePrimalityTest(@Qualifier("millerRubinPrimalityTest")
+                                         PrimalityTest millerRubin,
+                                         @Qualifier("factorizationPrimalityTest")
+                                         PrimalityTest factorizationPrimalityTest) {
+        this.millerRubin = millerRubin;
+        this.factorizationPrimalityTest = factorizationPrimalityTest;
+    }
 
     @Override
     public boolean test(BigInteger n) {
         if (n.bitLength() <= 63) {
-            return factorizationCheckingPrimalityTest.test(n);
+            return factorizationPrimalityTest.test(n);
         } else {
             return millerRubin.test(n);
         }

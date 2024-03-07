@@ -7,13 +7,13 @@ import java.math.BigInteger;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class FactorizationCheckingPrimalityTestTest {
+class FactorizationPrimalityTestTest {
 
     public static final BigInteger LONG_MAX_VALUE = BigInteger.valueOf(Long.MAX_VALUE);
     public static final BigInteger LARGEST_PRIME_SMALLER_THAN_LONG_MAX_VALUE =
             BigInteger.valueOf(9223372036854775783L);
 
-    private final PrimalityTest primalityTest = new FactorizationCheckingPrimalityTest();
+    private final PrimalityTest primalityTest = new FactorizationPrimalityTest();
 
     @Test
     public void testNegativeValues() {
