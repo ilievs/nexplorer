@@ -8,7 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,7 +30,7 @@ class SimpleFunctionCallExecutorTest {
 
     @Test
     public void testIsPrimeFunctionCallReturnsTrue() {
-        List<String> args = Collections.singletonList("871628376123263");
+        List<String> args = List.of("871628376123263");
         when(isPrime.execute(args)).thenReturn(Constants.TRUE_STRING);
 
         assertEquals(Constants.TRUE_STRING, functionCallExecutor.execute(isPrime.getFunctionName(), args));
@@ -41,7 +40,7 @@ class SimpleFunctionCallExecutorTest {
 
     @Test
     public void testIsPrimeFunctionCallReturnsFalse() {
-        List<String> args = Collections.singletonList("871628376123263");
+        List<String> args = List.of("871628376123263");
         when(isPrime.execute(args)).thenReturn(Constants.FALSE_STRING);
 
         assertEquals(Constants.FALSE_STRING, functionCallExecutor.execute(isPrime.getFunctionName(), args));
@@ -51,7 +50,7 @@ class SimpleFunctionCallExecutorTest {
 
     @Test
     public void testUnknownFunctionCall() {
-        List<String> args = Collections.singletonList("871628376123263");
+        List<String> args = List.of("871628376123263");
         var e = assertThrows(UnknownFunctionException.class, () -> functionCallExecutor.execute("sqrt", args));
         assertEquals("Call to unknown function 'sqrt'", e.getMessage());
 

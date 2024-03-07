@@ -1,15 +1,15 @@
 package com.dreamlab.nexplorer.api.impl;
 
+import java.math.BigInteger;
+import java.util.List;
+import java.util.Objects;
+
 import com.dreamlab.nexplorer.api.FunctionCall;
 import com.dreamlab.nexplorer.exception.IncorrectArgumentFormatException;
 import com.dreamlab.nexplorer.exception.WrongNumberOfArgumentsException;
 import com.dreamlab.nexplorer.service.PrimeNumberService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-import java.math.BigInteger;
-import java.util.List;
-import java.util.Objects;
+import org.springframework.stereotype.Component;
 
 @Component
 public class NextPrimeFunctionCall implements FunctionCall {
@@ -18,17 +18,15 @@ public class NextPrimeFunctionCall implements FunctionCall {
 
     private final PrimeNumberService primeNumberService;
 
-    @Autowired
     public NextPrimeFunctionCall(PrimeNumberService primeNumberService) {
-        Objects.requireNonNull(primeNumberService);
-        this.primeNumberService = primeNumberService;
+        this.primeNumberService = Objects.requireNonNull(primeNumberService);
     }
 
     private BigInteger validate(List<String> args) {
         if (args.size() != 1) {
             throw new WrongNumberOfArgumentsException(FUNCTION_NAME, 1, args);
         }
-        String argument1 = args.get(0);
+        String argument1 = args.getFirst();
         try {
             return new BigInteger(argument1);
         } catch (NumberFormatException e) {

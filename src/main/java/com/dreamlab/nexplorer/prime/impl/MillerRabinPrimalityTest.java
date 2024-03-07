@@ -1,12 +1,12 @@
 package com.dreamlab.nexplorer.prime.impl;
 
-import com.dreamlab.nexplorer.prime.PrimalityTest;
-import org.springframework.stereotype.Component;
-
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+
+import com.dreamlab.nexplorer.prime.PrimalityTest;
+
+import org.springframework.stereotype.Component;
 
 /**
  * Uses the Miller-Rabin primality test.
@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
  * small.
  * If n is composite then running k iterations of the Miller–Rabin test will declare
  * n probably prime with a probability at most 4^(−k)
- *
  * The complexity is O(k log^3 n), where k is the number of iterations where we
  * check n for compositeness. At the time of this writing k is 13, in which case
  * the probability that n is a pseudoprime (n is composite, but the test determines
@@ -43,7 +42,7 @@ public class MillerRabinPrimalityTest implements PrimalityTest {
     @Override
     public boolean test(BigInteger n) {
 
-        // if the number is non positive, it's not prime
+        // if the number is non-positive, it's not prime
         if (n.compareTo(BigInteger.TWO) < 0) {
             return false;
         }
@@ -78,7 +77,7 @@ public class MillerRabinPrimalityTest implements PrimalityTest {
 
         List<BigInteger> smallerThanNMinusOnePrimes = primes.stream()
                 .filter(p -> p.compareTo(nMinusOne) < 0)
-                .collect(Collectors.toList());
+                .toList();
 
         for (BigInteger prime: smallerThanNMinusOnePrimes) {
             BigInteger remainder = prime.modPow(d, n);

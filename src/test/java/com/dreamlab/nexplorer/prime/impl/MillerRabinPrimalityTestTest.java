@@ -1,10 +1,15 @@
 package com.dreamlab.nexplorer.prime.impl;
 
-import com.dreamlab.nexplorer.prime.PrimalityTest;
-import org.junit.jupiter.api.Test;
-
 import java.math.BigInteger;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
+import com.dreamlab.nexplorer.prime.PrimalityTest;
+
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -50,8 +55,8 @@ class MillerRabinPrimalityTestTest {
         BigInteger twoPowN = BigInteger.TWO.pow(nbits);
         List<BigInteger> primes = new ArrayList<>();
         for (int value : k) {
-            // we add one, because Long.MAX_VALUE = 2^63 - 1
-            // and we first subtract and then add, so we don't
+            // we add one, because Long.MAX_VALUE = 2^63 - 1;
+            // we first subtract and then add, so we don't
             // have an overflow
             primes.add(twoPowN.subtract(BigInteger.valueOf(value)));
         }

@@ -16,4 +16,15 @@ public class FunctionControllerAdvice {
                 .badRequest()
                 .body(e.getMessage());
     }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<Object> asd(IllegalArgumentException e) {
+        if (e.getMessage().equals("Integer too large for implementation")) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(e.getMessage());
+        }
+
+        return ResponseEntity.internalServerError().build();
+    }
 }

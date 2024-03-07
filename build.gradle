@@ -7,7 +7,7 @@ plugins {
 	id 'org.graalvm.buildtools.native' version '0.10.1'
 }
 
-group = 'com.dreamlab'
+group = 'com.dreamlabs'
 version = '0.0.2'
 
 java {

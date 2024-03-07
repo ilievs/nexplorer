@@ -1,7 +1,6 @@
 package com.dreamlab.nexplorer.controller;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import com.dreamlab.nexplorer.api.FunctionCallExecutor;
@@ -54,7 +53,7 @@ public class FunctionControllerTest {
     @Test
     public void testFunctionCallWithValidArguments() throws Exception {
         String functionName = "isPrime";
-        List<String> arguments = Collections.singletonList("76127863784678234");
+        List<String> arguments = List.of("76127863784678234");
         when(functionCallExecutor.execute(functionName, arguments)).thenReturn(Constants.TRUE_STRING);
 
         var path = "/function/call";
@@ -69,7 +68,7 @@ public class FunctionControllerTest {
     @Test
     public void testFunctionCallWithUnknownFunctionName() throws Exception {
         String functionName = "sqrt";
-        List<String> arguments = Collections.singletonList("76127863784678234");
+        List<String> arguments = List.of("76127863784678234");
         var e = new UnknownFunctionException(functionName);
         when(functionCallExecutor.execute(functionName, arguments)).thenThrow(e);
 
@@ -85,7 +84,7 @@ public class FunctionControllerTest {
     @Test
     public void testFunctionCallWithLessThanRequiredNumberOfArguments() throws Exception {
         String functionName = "isPrime";
-        List<String> arguments = Collections.emptyList();
+        List<String> arguments = List.of();
         var e = new WrongNumberOfArgumentsException(functionName, 1, arguments);
         when(functionCallExecutor.execute(functionName, arguments)).thenThrow(e);
 

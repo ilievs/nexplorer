@@ -7,7 +7,6 @@ import com.dreamlab.nexplorer.service.PrimeNumberService;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
-import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -24,7 +23,7 @@ class NextPrimeFunctionCallTest {
         BigInteger arg = BigInteger.valueOf(827637126378L);
         when(primeFinder.nextPrime(arg)).thenReturn(arg);
 
-        List<String> args = Collections.singletonList(arg.toString());
+        List<String> args = List.of(arg.toString());
         assertEquals(arg.toString(), functionCall.execute(args));
 
         verify(primeFinder, times(1)).nextPrime(arg);
@@ -33,7 +32,7 @@ class NextPrimeFunctionCallTest {
     @Test
     public void testAlphabetCharactersArguments() {
         var arg = "asdxzcbasdgweq";
-        List<String> args = Collections.singletonList(arg);
+        List<String> args = List.of(arg);
 
         var e = assertThrows(IncorrectArgumentFormatException.class, () -> functionCall.execute(args));
 
@@ -46,7 +45,7 @@ class NextPrimeFunctionCallTest {
     @Test
     public void testSpecialCharactersArguments() {
         var arg = "*&!@*&*$@&";
-        List<String> args = Collections.singletonList(arg);
+        List<String> args = List.of(arg);
 
         var e = assertThrows(IncorrectArgumentFormatException.class, () -> functionCall.execute(args));
 
@@ -59,7 +58,7 @@ class NextPrimeFunctionCallTest {
     @Test
     public void testAlphanumericCharactersArguments() {
         var arg = "as342dxas43432g2weq";
-        List<String> args = Collections.singletonList(arg);
+        List<String> args = List.of(arg);
 
         var e = assertThrows(IncorrectArgumentFormatException.class, () -> functionCall.execute(args));
 
@@ -72,7 +71,7 @@ class NextPrimeFunctionCallTest {
     @Test
     public void testAlphanumericAndSpecialCharactersArguments() {
         var arg = "kjas7623^%112lksd98(";
-        List<String> args = Collections.singletonList(arg);
+        List<String> args = List.of(arg);
 
         var e = assertThrows(IncorrectArgumentFormatException.class, () -> functionCall.execute(args));
 
@@ -85,7 +84,7 @@ class NextPrimeFunctionCallTest {
     @Test
     public void testZeroArguments() {
         var e = assertThrows(WrongNumberOfArgumentsException.class,
-                () -> functionCall.execute(Collections.emptyList()));
+                () -> functionCall.execute(List.of()));
 
         assertEquals("Wrong number of arguments for function call to 'nextPrime'." +
                 " Expected 1 arguments, got 0 ()", e.getMessage());
@@ -96,7 +95,7 @@ class NextPrimeFunctionCallTest {
     @Test
     public void testMoreThanOneArguments() {
         var e = assertThrows(WrongNumberOfArgumentsException.class,
-                () -> functionCall.execute(Collections.emptyList()));
+                () -> functionCall.execute(List.of()));
 
         assertEquals("Wrong number of arguments for function call to 'nextPrime'." +
                 " Expected 1 arguments, got 0 ()", e.getMessage());
